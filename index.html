@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Roster Kelas XI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>Roster Kelas XI</h1>
+      <button class="settings-btn" onclick="openSettings()" title="Settings">&#9881;</button>
+    </header>
+    <div class="schedule-list">
+      <div class="schedule-day" style="--col:#DDF6FF">
+        <button class="day-btn" onclick="toggleDay(this)">Monday <span class="chev">&#9660;</span></button>
+        <div class="day-desc">
+          <div class="item">
+            <div class="item-title">Bahasa Indonesia</div>
+            <div class="item-desc">with Pak Faisal – 08.00–10.30</div>
+          </div>
+          <div class="item">
+            <div class="item-title">KKK</div>
+            <div class="item-desc">with Pak Idrus / Pak Fadlan (for 2K3) or Pak Jamal / Bu Munira (for 2K1) – 10.30–15.30</div>
+          </div>
+        </div>
+      </div>
+      <div class="schedule-day" style="--col:#E8F0FE">
+        <button class="day-btn" onclick="toggleDay(this)">Tuesday <span class="chev">&#9660;</span></button>
+        <div class="day-desc">
+          <div class="item">
+            <div class="item-title">KKK</div>
+            <div class="item-desc">with Pak Idrus / Pak Fadlan – 07.15–15.30</div>
+          </div>
+        </div>
+      </div>
+      <div class="schedule-day" style="--col:#E7F6E7">
+        <button class="day-btn" onclick="toggleDay(this)">Wednesday <span class="chev">&#9660;</span></button>
+        <div class="day-desc">
+          <div class="item">
+            <div class="item-title">Penjas</div>
+            <div class="item-desc">with Pak Yus – 07.15–08.45</div>
+          </div>
+          <div class="item">
+            <div class="item-title">Sejarah</div>
+            <div class="item-desc">with Ibu Hj. Hereani – 08.45–10.30</div>
+          </div>
+          <div class="item">
+            <div class="item-title">Bahasa Daerah</div>
+            <div class="item-desc">with Ibu Hj. A. Eka – 10.30–11.15</div>
+          </div>
+          <div class="item">
+            <div class="item-title">Agama</div>
+            <div class="item-desc">with Pak Jufri – 11.15–14.00</div>
+          </div>
+          <div class="item">
+            <div class="item-title">KKK</div>
+            <div class="item-desc">with Pak Idrus / Pak Fadlan – 14.00–15.30</div>
+          </div>
+        </div>
+      </div>
+      <div class="schedule-day" style="--col:#FFF6DE">
+        <button class="day-btn" onclick="toggleDay(this)">Thursday <span class="chev">&#9660;</span></button>
+        <div class="day-desc">
+          <div class="item">
+            <div class="item-title">Mapel Pilihan</div>
+            <div class="item-desc">with Pak Angga – 07.15–10.30</div>
+          </div>
+          <div class="item">
+            <div class="item-title">BTQH</div>
+            <div class="item-desc">with Ibu Hj. Kasmira – 10.30–11.15</div>
+          </div>
+          <div class="item">
+            <div class="item-title">PKN</div>
+            <div class="item-desc">with Ibu Sarina – 11.15–13.15</div>
+          </div>
+          <div class="item">
+            <div class="item-title">MTK</div>
+            <div class="item-desc">with Ibu Heriati – 13.15–15.30</div>
+          </div>
+        </div>
+      </div>
+      <div class="schedule-day" style="--col:#E3E8F3">
+        <button class="day-btn" onclick="toggleDay(this)">Friday <span class="chev">&#9660;</span></button>
+        <div class="day-desc">
+          <div class="item">
+            <div class="item-title">Bahasa Inggris</div>
+            <div class="item-desc">with Ibu Hj. Makkarennu – 07.15–11.30</div>
+          </div>
+          <div class="item">
+            <div class="item-title">PKK</div>
+            <div class="item-desc">with Ibu Asrianti – 11.30–16.00</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-modal" id="settingsModal">
+      <div class="settings-content">
+        <button class="close-btn" onclick="closeSettings()" title="Tutup">&times;</button>
+        <h2>Settings</h2>
+        <button class="pdf-btn" onclick="window.print()">Download sebagai PDF</button>
+        <div class="credit">
+          <strong>
+            Untuk menambah atau mengubah jadwal pada roster bisa menghubungi link yang tertera di bawah:
+          </strong><br>
+          <a href="https://wa.me/6282279405818" target="_blank" class="wa-link">
+            https://wa.me/6282279405818
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      Muh. Apriansyah Arrahman kelas XI TJKT3
+    </footer>
+  </div>
+  <script>
+    function toggleDay(btn) {
+      const day = btn.closest('.schedule-day');
+      const desc = day.querySelector('.day-desc');
+      const chev = btn.querySelector('.chev');
+      if (desc.style.display === "block") {
+        desc.style.display = "none";
+        day.style.background = "#fff";
+        chev.innerHTML = "&#9660;";
+      } else {
+        desc.style.display = "block";
+        day.style.background = "var(--col)";
+        chev.innerHTML = "&#9650;";
+      }
+    }
+    // Mulai dengan semua hari tertutup
+    document.querySelectorAll('.day-desc').forEach(e=>e.style.display="none");
+    function openSettings() {
+      document.getElementById('settingsModal').style.display = 'flex';
+    }
+    function closeSettings() {
+      document.getElementById('settingsModal').style.display = 'none';
+    }
+    // Modal awal hidden
+    document.getElementById('settingsModal').style.display = 'none';
+  </script>
+</body>
+</html>
